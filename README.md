@@ -20,3 +20,10 @@ When sampling traces, you often need the decision to be consistent: if the same 
 - `trace_id` must be bytes-like (`bytes`, `bytearray`, or `memoryview`); anything else raises `TypeError`.
 - A custom `hash_fn` must return a non-negative `int`; violations raise `TypeError` or `ValueError`.
 - The default hash uses the first 8 bytes of SHA-256. If you supply your own hash function, it must return an integer in `[0, 2**64 - 1]`; values outside that range are not clamped and will simply fall on one side of the threshold.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
