@@ -1,6 +1,6 @@
 [project]
 name = "simple-sample-trace-decision"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hashes trace ids to decide sampling with a configurable rate, consistently."
 requires-python = ">=3.10"
 dependencies = []
